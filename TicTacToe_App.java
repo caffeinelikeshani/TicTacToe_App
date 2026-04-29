@@ -1,19 +1,29 @@
-public class TicTacToe {
-    public static void main(String[] args) {
-        char[][] board = new char[3][3];
-
+public class WinDetector {
+    public static boolean checkWin(char[][] board, char symbol) {
         for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                board[i][j] = '-';
+            if ((board[i][0] == symbol && board[i][1] == symbol && board[i][2] == symbol) ||
+                (board[0][i] == symbol && board[1][i] == symbol && board[2][i] == symbol)) {
+                return true;
             }
         }
 
-        System.out.println("Current Board Layout:");
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                System.out.print(board[i][j] + " ");
-            }
-            System.out.println(); // Move to the next line after each row
+        if ((board[0][0] == symbol && board[1][1] == symbol && board[2][2] == symbol) ||
+            (board[0][2] == symbol && board[1][1] == symbol && board[2][0] == symbol)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static void main(String[] args) {
+        char[][] board = {
+            {'X', 'X', 'X'},
+            {'-', 'O', '-'},
+            {'-', 'O', '-'}
+        };
+
+        if (checkWin(board, 'X')) {
+            System.out.println("Winner detected!");
         }
     }
 }
