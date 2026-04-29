@@ -1,19 +1,23 @@
-public class TicTacToe {
+import java.util.Scanner;
+
+public class UserInputHandler {
     public static void main(String[] args) {
-        char[][] board = new char[3][3];
+        int slot = getPlayerInput();
+        System.out.println("Selected slot: " + slot);
+    }
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                board[i][j] = '-';
+    public static int getPlayerInput() {
+        Scanner scanner = new Scanner(System.in);
+        int slot = -1;
+
+        while (slot < 1 || slot > 9) {
+            System.out.print("Enter a slot number (1-9): ");
+            if (scanner.hasNextInt()) {
+                slot = scanner.nextInt();
+            } else {
+                scanner.next();
             }
         }
-
-        System.out.println("Current Board Layout:");
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                System.out.print(board[i][j] + " ");
-            }
-            System.out.println(); // Move to the next line after each row
-        }
+        return slot;
     }
 }
