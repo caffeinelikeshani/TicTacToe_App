@@ -1,19 +1,14 @@
-public class TicTacToe {
+public class CoordinateConverter {
     public static void main(String[] args) {
-        char[][] board = new char[3][3];
+        int slot = 5; 
+        int[] indices = convertToIndices(slot);
+        
+        System.out.println("Slot " + slot + " maps to: Row " + indices[0] + ", Column " + indices[1]);
+    }
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                board[i][j] = '-';
-            }
-        }
-
-        System.out.println("Current Board Layout:");
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                System.out.print(board[i][j] + " ");
-            }
-            System.out.println(); // Move to the next line after each row
-        }
+    public static int[] convertToIndices(int slot) {
+        int row = (slot - 1) / 3;
+        int col = (slot - 1) % 3;
+        return new int[]{row, col};
     }
 }
